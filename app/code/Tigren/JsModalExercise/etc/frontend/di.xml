@@ -1,0 +1,8 @@
+<config>
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="interceptAddingProductToCart"
+                type="Tigren\JsModalExercise\Plugin\StopAddToCart"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+</config>
