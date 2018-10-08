@@ -4,10 +4,11 @@ define([
     ], function($,modal,url){
         'use strict';
         var ClearCartUrl = url.build('JsModalExercise/ClearCart/ClearCartAjax');
-        var CheckoutUrl = url.build('checkout/');
+        var CheckoutUrl = 'checkout/';
         return function(config, element){
             var Clearcart = config + ClearCartUrl;
             var Checkout = config + CheckoutUrl;
+            console.log(Checkout);
             var options = {
                 responsive: true,
                 innerScroll: true,
@@ -68,7 +69,7 @@ define([
 
 );
 
-//standard cua widget
+//standard widget
 
 // $.widget('namespace.widgetname', {
 //     //code

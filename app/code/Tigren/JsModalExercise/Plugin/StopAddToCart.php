@@ -39,7 +39,6 @@ class StopAddToCart
     {
         if ($this->_helperdata->CheckMultipleCart() > 0 && $this->_helperdata->getConfigValue() > 0)  {
             die();
-
         }
         return [$productInfo, $requestInfo];
     }
