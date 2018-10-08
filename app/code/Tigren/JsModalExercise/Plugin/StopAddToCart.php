@@ -35,12 +35,11 @@ class StopAddToCart
      * @return array
      * @throws LocalizedException
      */
-    public function beforeAddProduct($subject, $productInfo, $requestInfo = null)
+    public function beforeAddProduct($productInfo, $requestInfo = null)
     {
-        if ($this->_helperdata->CheckMultipleCart() > 0 && $this->_helperdata->getConfigValue() > 1)  {
-            throw new LocalizedException(__('Could not add Product to Cart'));
+        if ($this->_helperdata->CheckMultipleCart() > 0 && $this->_helperdata->getConfigValue() > 0)  {
             die();
-            return [$productInfo, $requestInfo];
         }
+        return [$productInfo, $requestInfo];
     }
 }

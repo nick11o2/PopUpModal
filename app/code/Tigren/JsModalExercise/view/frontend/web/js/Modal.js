@@ -1,43 +1,49 @@
-
 define([
+
         "jquery", "Magento_Ui/js/modal/modal", "mage/url"
     ], function($,modal,url){
         'use strict';
         var ClearCartUrl = url.build('JsModalExercise/ClearCart/ClearCartAjax');
         var CheckoutUrl = url.build('checkout/');
-        var options = {
-            responsive: true,
-            innerScroll: true,
-            title: 'Confirm',
-            buttons: [{
-                text: 'Clear cart',
-                class: 'clear_cart',
-                click: function(){
-                    $.ajax({
-                        url: ClearCartUrl,
-                        type: 'POST',
-                        dataType: "json",
-                        success: function (response) {
-                            console.log("success!");
-                        }
-                    });
-                    this.closeModal();
-                }
-            }, {
-                text: 'Continue',
-                class: 'checkout',
-                click: function(){
-                    window.location.href = CheckoutUrl;
-                }
-            }]
-
-        };
         return function(config, element){
-            modal(options,$('#modal-content'));
+            var Clearcart = config + ClearCartUrl;
+            var Checkout = config + CheckoutUrl;
+            var options = {
+                responsive: true,
+                innerScroll: true,
+                title: 'Confirm',
+                buttons: [{
+                    text: 'Clear cart',
+                    class: 'clear_cart',
+                    click: function(){
+                        $.ajax({
+                            url: Clearcart,
+                            type: 'POST',
+                            dataType: "json",
+                            success: function () {
+                                console.log("success!");
+                            },
+                            complete: function() {
+                                location.reload();
+                            }
+                        });
+                        this.closeModal();
+                    }
+                }, {
+                    text: 'Continue',
+                    class: 'checkout',
+                    click: function(){
+                        window.location.href = Checkout;
+                    }
+                }]
 
-            $(element).on('click', function(){
-                $("#modal-content").modal("openModal");
-            });
+            };
+
+                modal(options,$('#modal-content'));
+
+                $(element).on('click', function(){
+                    $("#modal-content").modal("openModal");
+                });
         };
     }
 
